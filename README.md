@@ -1,7 +1,7 @@
 # random-shapes-art-generator
 algorithm that generates art by randomly plotting shapes
 
-![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/tree/main/images/sample_animation_seahorse.GIF)
+![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/tree/feature/infrastructure/images/sample_animation_seahorse.GIF)
 
 ## Overview
 
@@ -31,7 +31,7 @@ docker exec -it sh
 
 - [Instagram](https://www.instagram.com/random.on.canvas_art?igsh=dTRkaGRwZ3NnNXBo&utm_source=qr)
 - [X]()
-- [Mail](random.on.canvas.art@gmail.com)
+- Mail:random.on.canvas.art@gmail.com
 
 ## Licence
 

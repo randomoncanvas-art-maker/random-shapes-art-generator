@@ -1,7 +1,7 @@
 # random-shapes-art-generator
 algorithm that generates art by randomly plotting shapes
 
-![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/tree/feature/infrastructure/images/sample_animation_seahorse.GIF)
+![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/blob/feature/infrastructure/images/sample_animation_seahorse.GIF)
 
 ## Overview
 

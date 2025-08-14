@@ -1,12 +1,14 @@
 # random-shapes-art-generator
 algorithm that generates art by randomly plotting shapes
 
-![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/....
+![gif](https://github.com/randomoncanvas-art-maker/random-shapes-art-generator/tree/main/images/sample_animation_seahorse.GIF)
 
 ## Overview
 
 ## Requirement
 - macOS
+- docker
+- docker-compose
 ## Usage
 ```
 git clone https://github.com/randomoncanvas-art-maker/random-shapes-art-generator.git
@@ -24,11 +26,12 @@ docker exec -it sh
 ## Features
 
 ## Reference
-
+- https://note.com/lively_crocus13/n/n721505f6ddbe
 ## Author
 
-[Instagram]
-[X]
+- [Instagram](https://www.instagram.com/random.on.canvas_art?igsh=dTRkaGRwZ3NnNXBo&utm_source=qr)
+- [X]()
+- [Mail](random.on.canvas.art@gmail.com)
 
 ## Licence
 

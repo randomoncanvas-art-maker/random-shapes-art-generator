@@ -1,0 +1,17 @@
+version: "3.0"
+
+services:
+  background_app:
+    image: background_app_python3.10_image
+    build: .
+    container_name: background_app_python3.10_container
+    ports:
+      - "8888:8888"
+    restart: always
+    working_dir: /workspace/src
+    volumes:
+      - ../src:/workspace/src
+      - ../config:/workspace/config
+    tty: true
+
+  # jupyter-lab --ip 0.0.0.0 --allow-root -b localhost

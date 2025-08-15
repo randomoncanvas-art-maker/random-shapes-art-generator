@@ -10,22 +10,22 @@ algorithm that generates art by randomly plotting shapes
 - docker
 - docker-compose
 ## Usage
-clone repository.
+Clone repository
 ```
 git clone https://github.com/randomoncanvas-art-maker/random-shapes-art-generator.git
 ```
-build envailment using Docker and docker-compose.
+Build envailment using Docker and docker-compose
 ```
 cd random-shapes-art-generator/docker
 docker compose up -d
 docker exec -it sh
 ```
-Run the generator in a docker container.
+Run the generator in a docker container
 ```
 cd main
 python main.py --input_file_path ../dataset/sample/bird.jpg --output_dir_path ../output/sample
 ```
-After execution, the results will be output to `output_dir_path`.
+After execution, the results will be output to `output_dir_path`
 ## Features
 
 ## Reference
@@ -33,7 +33,7 @@ After execution, the results will be output to `output_dir_path`.
 ## Author
 
 - [Instagram](https://www.instagram.com/random.on.canvas_art?igsh=dTRkaGRwZ3NnNXBo&utm_source=qr)
-- [X]()
+- [X](https://x.com/randomoncanvas?s=21&t=FNt_GNO6GCVhZ_ytUxNxKw)
 - Mail:random.on.canvas.art@gmail.com
 
 ## Licence

@@ -1,4 +1,5 @@
 import random
+import argparse
 
 import numpy as np
 from evaluator import Evaluator
@@ -9,9 +10,9 @@ from tqdm import tqdm
 from visualizer import Visualizer
 
 
-def main():
+def main(args):
     # config
-    config = ConfigInit()
+    config = ConfigInit(args)
 
     # Preprocessing
     prepro = Preprocessor(config=config, file_path=config.input_file_path)
@@ -107,4 +108,16 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(
+        prog='argparseTest.py',
+        usage='Demonstration of argparser',
+        description='description',
+        epilog='end',
+        add_help=True,  # -h/–help オプションの追加
+    )
+    parser.add_argument('-i', '--input_file_path',
+                        help='Input image file path')
+    parser.add_argument('-o', '--output_dir_path',
+                        help='Output directory path')
+    args = parser.parse_args()
+    main(args)

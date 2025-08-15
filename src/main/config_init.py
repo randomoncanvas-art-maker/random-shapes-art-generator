@@ -1,18 +1,19 @@
 import os
 import configparser
-
+from typing import Any
 
 CONFIG_FILE_PATH = '../../config/config.ini'
 
 
 class ConfigInit:
-    def __init__(self):
+    def __init__(self, args: Any) -> None:
         # Read config
         config_ini = configparser.ConfigParser()
         if not os.path.exists(CONFIG_FILE_PATH):
             #   logger.error('設定ファイルがありません')
             exit(-1)
         config_ini.read(CONFIG_FILE_PATH, encoding='utf-8')
+        self.args = args
         # logging.info('----設定開始----')
         try:
             # common parameters
@@ -33,8 +34,8 @@ class ConfigInit:
                 config_ini["COMMON_PARAMETER"]["Line_Thickness_Variations"])]
             self.weight_line_thickness_selected = [float(i) for i in eval(config_ini[
                 "COMMON_PARAMETER"]["Weight_Line_Thickness_Selected"])]
-            self.input_file_path = config_ini["COMMON_PARAMETER"]["Input_File_Path"]
-            self.save_dir_path = config_ini["COMMON_PARAMETER"]["Save_Dir_Path"]
+            self.input_file_path = self.args.input_file_path
+            self.save_dir_path = self.args.output_dir_path
             # line parameters
             self.line_is_generate = bool(
                 config_ini["LINE_PARAMETER"]["Is_Generate"])

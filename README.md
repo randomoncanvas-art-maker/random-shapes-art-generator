@@ -29,6 +29,7 @@ cd main
 python main.py --input_file_path ../dataset/sample/seahorse.jpg --output_dir_path ../output/sample
 ```
 After execution, the results will be output to `output_dir_path`
+
 You can generate any random art by changing the input image.
 
 ## Reference

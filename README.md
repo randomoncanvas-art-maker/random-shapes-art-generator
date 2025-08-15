@@ -26,9 +26,10 @@ docker exec -it sh
 Run the generator in a docker container
 ```
 cd main
-python main.py --input_file_path ../dataset/sample/bird.jpg --output_dir_path ../output/sample
+python main.py --input_file_path ../dataset/sample/seahorse.jpg --output_dir_path ../output/sample
 ```
 After execution, the results will be output to `output_dir_path`
+You can generate any random art by changing the input image.
 
 ## Reference
 - https://note.com/lively_crocus13/n/n721505f6ddbe

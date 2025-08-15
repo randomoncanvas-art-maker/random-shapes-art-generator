@@ -18,15 +18,15 @@ class Generator:
         return blank_canvas
 
     def generate_shape(self, shape_name: str) -> np.ndarray:
-        if shape_name == "line":
+        if shape_name == 'line':
             mask = self._generate_line()
-        elif shape_name == "circle":
+        elif shape_name == 'circle':
             mask = self._generate_circle()
-        elif shape_name == "ellipse":
+        elif shape_name == 'ellipse':
             mask = self._generate_ellipse()
-        elif shape_name == "square":
+        elif shape_name == 'square':
             mask = self._generate_square()
-        elif shape_name == "triangle":
+        elif shape_name == 'triangle':
             mask = self._generate_triangle()
         else:
             pass
@@ -62,12 +62,12 @@ class Generator:
             color=color,
             thickness=line_thickness,
         )
-        params_dict["choiced_shapes"] = "line"
-        params_dict["params"] = {
-            "pt1": pt1,
-            "pt2": pt2,
-            "color": color,
-            "line_thickness": line_thickness,
+        params_dict['choiced_shapes'] = 'line'
+        params_dict['params'] = {
+            'pt1': pt1,
+            'pt2': pt2,
+            'color': color,
+            'line_thickness': line_thickness,
         }
 
         return (mask, params_dict)
@@ -96,12 +96,12 @@ class Generator:
             color=color,
             thickness=line_thickness,
         )
-        params_dict["choiced_shapes"] = "circle"
-        params_dict["params"] = {
-            "center": center,
-            "radius": radius,
-            "color": color,
-            "line_thickness": line_thickness,
+        params_dict['choiced_shapes'] = 'circle'
+        params_dict['params'] = {
+            'center': center,
+            'radius': radius,
+            'color': color,
+            'line_thickness': line_thickness,
         }
         return (mask, params_dict)
 
@@ -127,11 +127,11 @@ class Generator:
         )[0]
         mask = cv2.ellipse(
             blank_canvas, box=box, color=color, thickness=line_thickness)
-        params_dict["choiced_shapes"] = "ellipse"
-        params_dict["params"] = {
-            "box": box,
-            "color": color,
-            "line_thickness": line_thickness,
+        params_dict['choiced_shapes'] = 'ellipse'
+        params_dict['params'] = {
+            'box': box,
+            'color': color,
+            'line_thickness': line_thickness,
         }
 
         return (mask, params_dict)
@@ -163,12 +163,12 @@ class Generator:
             color=color,
             thickness=line_thickness,
         )
-        params_dict["choiced_shapes"] = "square"
-        params_dict["params"] = {
-            "pt1": pt1,
-            "pt2": pt2,
-            "color": color,
-            "line_thickness": line_thickness,
+        params_dict['choiced_shapes'] = 'square'
+        params_dict['params'] = {
+            'pt1': pt1,
+            'pt2': pt2,
+            'color': color,
+            'line_thickness': line_thickness,
         }
 
         return (mask, params_dict)
@@ -208,12 +208,12 @@ class Generator:
             color=color,
             thickness=line_thickness,
         )
-        params_dict["choiced_shapes"] = "triangle"
-        params_dict["params"] = {
-            "pts": pts,
-            "isClosed": self.config. triangle_is_closed,
-            "color": color,
-            "line_thickness": line_thickness,
+        params_dict['choiced_shapes'] = 'triangle'
+        params_dict['params'] = {
+            'pts': pts,
+            'isClosed': self.config. triangle_is_closed,
+            'color': color,
+            'line_thickness': line_thickness,
         }
 
         return (mask, params_dict)

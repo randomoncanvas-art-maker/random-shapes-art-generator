@@ -33,30 +33,30 @@ def main(args):
 
     # Selecting shapes to generate
     shapes_is_generate_list = {
-        "line": {
-            "is_Generate": config.line_is_generate,
-            "weight_selected": config.line_weight_selected
+        'line': {
+            'is_Generate': config.line_is_generate,
+            'weight_selected': config.line_weight_selected
         },
-        "circle": {
-            "is_Generate": config.circle_is_generate,
-            "weight_selected": config.circle_weight_selected
+        'circle': {
+            'is_Generate': config.circle_is_generate,
+            'weight_selected': config.circle_weight_selected
         },
-        "ellipse": {
-            "is_Generate": config.ellipse_is_generate,
-            "weight_selected": config.ellipse_weight_selected
+        'ellipse': {
+            'is_Generate': config.ellipse_is_generate,
+            'weight_selected': config.ellipse_weight_selected
         },
-        "square": {
-            "is_Generate": config.square_is_generate,
-            "weight_selected": config.square_weight_selected
+        'square': {
+            'is_Generate': config.square_is_generate,
+            'weight_selected': config.square_weight_selected
         },
-        "triangle": {
-            "is_Generate": config.triangle_is_generate,
-            "weight_selected": config.triangle_weight_selected
+        'triangle': {
+            'is_Generate': config.triangle_is_generate,
+            'weight_selected': config.triangle_weight_selected
         },
     }
     shapes_candidates_and_weight = {
-        name: shapes_is_generate_list[name]["weight_selected"]
-        for name in shapes_is_generate_list if shapes_is_generate_list[name]["is_Generate"] is True
+        name: shapes_is_generate_list[name]['weight_selected']
+        for name in shapes_is_generate_list if shapes_is_generate_list[name]['is_Generate'] is True
     }
     shapes_candidates_list = list(shapes_candidates_and_weight.keys())
     shapes_weight_list = list(shapes_candidates_and_weight.values())

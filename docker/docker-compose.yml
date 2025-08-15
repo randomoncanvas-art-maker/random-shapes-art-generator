@@ -1,4 +1,4 @@
-version: "3.0"
+version: '3.0'
 
 services:
   background_app:
@@ -6,7 +6,7 @@ services:
     build: .
     container_name: background_app_python3.10_container
     ports:
-      - "8888:8888"
+      - '8888:8888'
     restart: always
     working_dir: /workspace/src
     volumes:

@@ -20,12 +20,12 @@ class Visualizer:
         output_img = (1.0 - canvas) * 255
         output_img = output_img.astype(np.uint8)
         plt.figure(figsize=(6, 6))
-        plt.imshow(output_img, cmap="gray")
-        plt.axis("off")
+        plt.imshow(output_img, cmap='gray')
+        plt.axis('off')
         # plt.show()
         # save
         cv2.imwrite(os.path.join(self.save_dir_path,
-                    "output_images.png"), output_img)
+                    'output_images.png'), output_img)
 
     def save_generated_images_with_target(self, target: np.ndarray, canvas: np.ndarray) -> None:
         target_img = (1.0 - target) * 255
@@ -34,14 +34,14 @@ class Visualizer:
         output_img = output_img.astype(np.uint8)
         fig = plt.figure()
         a = fig.add_subplot(1, 2, 1)
-        plt.imshow(target_img, cmap="gray")
-        a.axis("off")
+        plt.imshow(target_img, cmap='gray')
+        a.axis('off')
         a = fig.add_subplot(1, 2, 2)
-        plt.imshow(output_img, cmap="gray")
-        a.axis("off")
+        plt.imshow(output_img, cmap='gray')
+        a.axis('off')
         # save
         plt.savefig(os.path.join(self.save_dir_path,
-                    "output_compare_images.png"))
+                    'output_compare_images.png'))
 
     def save_generated_animation(self, records_canvas: List[np.ndarray]) -> None:
         imgs = []
@@ -49,8 +49,8 @@ class Visualizer:
         for shapes_id in range(0, len(records_canvas)):
             output_img = (1.0 - records_canvas[shapes_id]) * 255
             output_img = output_img.astype(np.uint8)
-            plt.axis("off")
-            img = plt.imshow(output_img, cmap="gray")
+            plt.axis('off')
+            img = plt.imshow(output_img, cmap='gray')
             imgs.append([img])
         ani = ArtistAnimation(
             fig, imgs, interval=100, blit=True, repeat_delay=3000
@@ -59,7 +59,7 @@ class Visualizer:
         ani.save(
             os.path.join(
                 self.save_dir_path,
-                "output_animation.gif"), writer="pillow"
+                'output_animation.gif'), writer='pillow'
         )
 
     def save_score_graph(self, records_scores: List[float]) -> None:
@@ -67,18 +67,18 @@ class Visualizer:
         plt.plot(
             range(1, len(records_scores) + 1),
             records_scores,
-            marker="o",
+            marker='o',
             markersize=2,
             linewidth=1,
         )
-        plt.xlabel("Shapes ID")
-        plt.ylabel("Score")
-        plt.title("Score Progression")
+        plt.xlabel('Shapes ID')
+        plt.ylabel('Score')
+        plt.title('Score Progression')
         plt.grid(True)
         plt.tight_layout()
         plt.show()
         # save
-        plt.savefig(os.path.join(self.save_dir_path, "output_score_graph.png"))
+        plt.savefig(os.path.join(self.save_dir_path, 'output_score_graph.png'))
 
     def save_parameters(self,
                         records_params: List[dict],
@@ -88,12 +88,12 @@ class Visualizer:
         resules_dict = {}
         shapes_id = 1
         for params, score, mask, convas in zip(records_params, records_scores, records_masks, records_canvas):
-            resules_dict["Shapes_id"] = shapes_id
-            resules_dict["Params"] = params
-            resules_dict["Score"] = score
-            resules_dict["Mask"] = mask.tolist()
-            resules_dict["Convas"] = convas.tolist()
+            resules_dict['Shapes_id'] = shapes_id
+            resules_dict['Params'] = params
+            resules_dict['Score'] = score
+            resules_dict['Mask'] = mask.tolist()
+            resules_dict['Convas'] = convas.tolist()
             shapes_id += 1
-        with open(os.path.join(self.save_dir_path, "records.json"), mode="w") as f:
+        with open(os.path.join(self.save_dir_path, 'records.json'), mode='w') as f:
             d = json.dumps(resules_dict, indent=4)
             f.write(d)

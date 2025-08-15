@@ -21,13 +21,13 @@ class Generator:
         if shape_name == "line":
             mask = self._generate_line()
         elif shape_name == "circle":
-            mask = self._generate_line()
+            mask = self._generate_circle()
         elif shape_name == "ellipse":
-            mask = self._generate_line()
+            mask = self._generate_ellipse()
         elif shape_name == "square":
-            mask = self._generate_line()
+            mask = self._generate_square()
         elif shape_name == "triangle":
-            mask = self._generate_line()
+            mask = self._generate_triangle()
         else:
             pass
 

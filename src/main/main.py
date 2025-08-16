@@ -1,5 +1,7 @@
 import argparse
+import datetime
 import logging
+import os
 import random
 
 import numpy as np
@@ -8,20 +10,31 @@ from evaluator import Evaluator
 from generator import Generator
 from preprocessor import Preprocessor
 from rich.logging import RichHandler
-from tqdm import tqdm
+from rich.progress import track
 from visualizer import Visualizer
 
 
 def main(args):
-    # setiing logger
+    # Config
+    config = ConfigInit(args)
+
+    # Setiing logge
+    logger = logging.getLogger('Log')
+
+    if args.run_mode == 'test':
+        logging_level = logging.DEBUG
+    else:
+        logging_level = logging.INFO
+    now = datetime.datetime.now()
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=logging_level,
         format="%(message)s",
         datefmt="[%X]",
-        handlers=[RichHandler(markup=True, rich_tracebacks=True)]
+        handlers=[
+            logging.FileHandler(filename=os.path.join(config.OUTPUT_DIR_PATH,
+                                f"log_{now.strftime('%Y%m%d%H%M%S')}.txt")),
+            RichHandler(markup=True, rich_tracebacks=True)]
     )
-    # config
-    config = ConfigInit(args)
 
     # Preprocessing
     prepro = Preprocessor(config=config, file_path=config.INPUT_FILE_PATH)
@@ -71,7 +84,8 @@ def main(args):
     shapes_weight_list = list(shapes_candidates_and_weight.values())
 
     # Main processing
-    for _ in tqdm(range(config.NUM_ITERATIONS)):
+    logger.info('Start generating art')
+    for _ in track(range(config.NUM_ITERATIONS)):
         best_score = -np.inf
         best_params = None
         best_mask = None
@@ -99,6 +113,7 @@ def main(args):
         else:
             pass
 
+    logger.info('Start saving resultes')
     # Visualizer
     visual = Visualizer(config=config)
     visual.save_generated_images(
@@ -115,18 +130,24 @@ def main(args):
         records_masks=records_masks,
         records_canvas=records_canvas)
 
+    logger.info(
+        f'Finished and check resulets in "{config.OUTPUT_DIR_PATH}" directory')
+
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(
-        prog='argparseTest.py',
-        usage='Demonstration of argparser',
-        description='description',
-        epilog='end',
-        add_help=True,  # -h/–help オプションの追加
-    )
+    parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input_file_path',
+                        type=str,
+                        required=True,
                         help='Input image file path')
     parser.add_argument('-o', '--output_dir_path',
+                        type=str,
+                        required=True,
                         help='Output directory path')
+    parser.add_argument('-r', '--run_mode',
+                        default='prod',
+                        type=str,
+                        choices=['prod', 'test'],
+                        help='set mode, [prod] or [test]')
     args = parser.parse_args()
     main(args)

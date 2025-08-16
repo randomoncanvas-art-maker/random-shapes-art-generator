@@ -1,9 +1,11 @@
-import configparser
 import random
+from logging import getLogger
 from typing import Any, Tuple
 
 import cv2
 import numpy as np
+
+logger = getLogger('Log').getChild('generator')
 
 
 class Generator:
@@ -29,7 +31,8 @@ class Generator:
         elif shape_name == 'triangle':
             mask = self._generate_triangle()
         else:
-            pass
+            logger.error(
+                'Shapes Is_Generate is all "False", Set one of them to "True"')
 
         return mask
 

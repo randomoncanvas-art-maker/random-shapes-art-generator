@@ -1,8 +1,10 @@
 import configparser
 import os
+from logging import getLogger
 from typing import Any
 
 CONFIG_FILE_PATH = '../../config/config.ini'
+logger = getLogger('Log').getChild('config_init')
 
 
 class ConfigInit:
@@ -10,11 +12,10 @@ class ConfigInit:
         # Read config
         config_ini = configparser.ConfigParser()
         if not os.path.exists(CONFIG_FILE_PATH):
-            #   logger.error('設定ファイルがありません')
+            logger.error('設定ファイルがありません')
             exit(-1)
         config_ini.read(CONFIG_FILE_PATH, encoding='utf-8')
         self.args = args
-        # logging.info('----設定開始----')
         try:
             # common parameters
             self.IMAGE_SIZE = int(config_ini['COMMON_PARAMETER']['Image_Size'])
@@ -35,7 +36,7 @@ class ConfigInit:
             self.WEIGHT_LINE_THICKNESS_SELECTED = [float(i) for i in eval(config_ini[
                 'COMMON_PARAMETER']['Weight_Line_Thickness_Selected'])]
             self.INPUT_FILE_PATH = self.args.input_file_path
-            self.SAVE_DIR_PATH = self.args.output_dir_path
+            self.OUTPUT_DIR_PATH = self.args.output_dir_path
             # line parameters
             self.LINE_IS_GENERATE = bool(
                 config_ini['LINE_PARAMETER']['Is_Generate'])
@@ -85,5 +86,4 @@ class ConfigInit:
                 config_ini['TRIANGLE_PARAMETER']['Is_Closed'])
 
         except Exception as e:
-            print('config error{0}'.format(e))
-        #   logger.critical('config error {0}'.format(e))
+            logger.critical('config error {0}'.format(e))

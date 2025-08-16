@@ -1,7 +1,7 @@
 import configparser
 import json
 import os
-from typing import List
+from typing import Any, List
 
 import cv2
 import matplotlib.pyplot as plt
@@ -10,11 +10,11 @@ from matplotlib.animation import ArtistAnimation
 
 
 class Visualizer:
-    def __init__(self, config: configparser.ConfigParser) -> None:
+    def __init__(self, config: Any) -> None:
         self.config = config
-        self.save_dir_path = self.config.save_dir_path
-        if not os.path.isdir(self.save_dir_path):
-            os.mkdir(self.save_dir_path)
+        self.SAVE_DIR_PATH = self.config.SAVE_DIR_PATH
+        if not os.path.isdir(self.SAVE_DIR_PATH):
+            os.mkdir(self.SAVE_DIR_PATH)
 
     def save_generated_images(self, canvas: np.ndarray) -> None:
         output_img = (1.0 - canvas) * 255
@@ -24,7 +24,7 @@ class Visualizer:
         plt.axis('off')
         # plt.show()
         # save
-        cv2.imwrite(os.path.join(self.save_dir_path,
+        cv2.imwrite(os.path.join(self.SAVE_DIR_PATH,
                     'output_images.png'), output_img)
 
     def save_generated_images_with_target(self, target: np.ndarray, canvas: np.ndarray) -> None:
@@ -40,7 +40,7 @@ class Visualizer:
         plt.imshow(output_img, cmap='gray')
         a.axis('off')
         # save
-        plt.savefig(os.path.join(self.save_dir_path,
+        plt.savefig(os.path.join(self.SAVE_DIR_PATH,
                     'output_compare_images.png'))
 
     def save_generated_animation(self, records_canvas: List[np.ndarray]) -> None:
@@ -58,7 +58,7 @@ class Visualizer:
         # save
         ani.save(
             os.path.join(
-                self.save_dir_path,
+                self.SAVE_DIR_PATH,
                 'output_animation.gif'), writer='pillow'
         )
 
@@ -78,7 +78,7 @@ class Visualizer:
         plt.tight_layout()
         plt.show()
         # save
-        plt.savefig(os.path.join(self.save_dir_path, 'output_score_graph.png'))
+        plt.savefig(os.path.join(self.SAVE_DIR_PATH, 'output_score_graph.png'))
 
     def save_parameters(self,
                         records_params: List[dict],
@@ -94,6 +94,6 @@ class Visualizer:
             resules_dict['Mask'] = mask.tolist()
             resules_dict['Convas'] = convas.tolist()
             shapes_id += 1
-        with open(os.path.join(self.save_dir_path, 'records.json'), mode='w') as f:
+        with open(os.path.join(self.SAVE_DIR_PATH, 'records.json'), mode='w') as f:
             d = json.dumps(resules_dict, indent=4)
             f.write(d)

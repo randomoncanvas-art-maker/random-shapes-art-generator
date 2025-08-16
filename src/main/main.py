@@ -1,21 +1,30 @@
-import random
 import argparse
+import logging
+import random
 
 import numpy as np
+from config_init import ConfigInit
 from evaluator import Evaluator
 from generator import Generator
 from preprocessor import Preprocessor
-from config_init import ConfigInit
+from rich.logging import RichHandler
 from tqdm import tqdm
 from visualizer import Visualizer
 
 
 def main(args):
+    # setiing logger
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format="%(message)s",
+        datefmt="[%X]",
+        handlers=[RichHandler(markup=True, rich_tracebacks=True)]
+    )
     # config
     config = ConfigInit(args)
 
     # Preprocessing
-    prepro = Preprocessor(config=config, file_path=config.input_file_path)
+    prepro = Preprocessor(config=config, file_path=config.INPUT_FILE_PATH)
     canvas = prepro.canvas
     target = prepro.target
 
@@ -34,24 +43,24 @@ def main(args):
     # Selecting shapes to generate
     shapes_is_generate_list = {
         'line': {
-            'is_Generate': config.line_is_generate,
-            'weight_selected': config.line_weight_selected
+            'is_Generate': config.LINE_IS_GENERATE,
+            'weight_selected': config.LINE_WEIGHT_SELECTED
         },
         'circle': {
-            'is_Generate': config.circle_is_generate,
-            'weight_selected': config.circle_weight_selected
+            'is_Generate': config.CIRCLE_IS_GENERATE,
+            'weight_selected': config.CIRCLE_WEIGHT_SELECTED
         },
         'ellipse': {
-            'is_Generate': config.ellipse_is_generate,
-            'weight_selected': config.ellipse_weight_selected
+            'is_Generate': config.ELLIPSE_IS_GENERATE,
+            'weight_selected': config.ELLIPSE_WEIGHT_SELECTED
         },
         'square': {
-            'is_Generate': config.square_is_generate,
-            'weight_selected': config.square_weight_selected
+            'is_Generate': config.SQUARE_IS_GENERATE,
+            'weight_selected': config.SQUARE_WEIGHT_SELECTED
         },
         'triangle': {
-            'is_Generate': config.triangle_is_generate,
-            'weight_selected': config.triangle_weight_selected
+            'is_Generate': config.TRIANGLE_IS_GENERATE,
+            'weight_selected': config.TRIANGLE_WEIGHT_SELECTED
         },
     }
     shapes_candidates_and_weight = {
@@ -62,12 +71,12 @@ def main(args):
     shapes_weight_list = list(shapes_candidates_and_weight.values())
 
     # Main processing
-    for _ in tqdm(range(config.num_iterations)):
+    for _ in tqdm(range(config.NUM_ITERATIONS)):
         best_score = -np.inf
         best_params = None
         best_mask = None
 
-        for _ in range(config.num_plot_per_iter):
+        for _ in range(config.NUM_PLOT_PER_ITER):
             # choise shapes
             choiced_shape = random.choices(
                 shapes_candidates_list, weights=shapes_weight_list)[0]
@@ -80,7 +89,7 @@ def main(args):
             else:
                 pass
 
-        if (best_params is not None) & (best_score >= config.score_threshold):
+        if (best_params is not None) & (best_score >= config.SCORE_THRESHOLD):
             canvas += best_mask
             canvas = np.clip(canvas, 0, 1)
             records_params.append(best_params)

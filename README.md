@@ -21,7 +21,7 @@ Build envailment using Docker and docker-compose
 ```
 cd random-shapes-art-generator/docker
 docker compose up -d
-docker exec -it sh
+docker exec -it python3.10_container sh
 ```
 Run the generator in a docker container
 ```

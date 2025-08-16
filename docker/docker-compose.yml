@@ -1,10 +1,10 @@
 version: '3.0'
 
 services:
-  background_app:
-    image: background_app_python3.10_image
+  app:
+    image: python3.10_image
     build: .
-    container_name: background_app_python3.10_container
+    container_name: python3.10_container
     ports:
       - '8888:8888'
     restart: always

@@ -28,4 +28,4 @@ RUN pip install -r requirements.txt
 # pythonコマンドの参照先をPython3.10に変更
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
 
-CMD ['/bin/bash']
+CMD ["/bin/bash"]
